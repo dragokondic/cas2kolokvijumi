@@ -12,9 +12,9 @@ public function __construct($id=null,$username=null,$password=null){
 }
 public static function logInUser($usr,mysqli $conn){
 
-    $query="SELECT * FROM user WHERE username=$usr->username and password=$usr->password";
+    $query="SELECT * FROM user WHERE username='$usr->username' and password='$usr->password'";
     //konekcija sa bazom 
-    return true;
+    return $conn->query($query);
 }
 
 }

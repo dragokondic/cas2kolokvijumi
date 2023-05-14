@@ -1,18 +1,20 @@
 <?php
+
+    require "dbBroker.php";
     require "model/user.php";
     session_start();
     if(isset($_POST['username']) && isset($_POST['password'])){
         $uname=$_POST['username'];
         $upass=$_POST['password'];
 
-        $conn=new mysqli();
+      //  $conn=new mysqli();
 
         $korisnik=new User(1,$uname,$upass);
 
         //$odg=$korisnik->logInUser($uname,$upass,$conn);
         $odg=User::logInUser($korisnik,$conn);//pristup statickom funkcijama preko klase 
 
-        if($odg){
+        if($odg->num_rows==1){
             echo `<script>
            console.log("Uspesno ste se prijavili");
            </script>`;
